@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./sa-frontend
+    ports:
+      - '8000:80'
+  logic:
+    build:
+      dockerfile: Dockerfile
+      context: ./sa-logic
+    ports:
+      - '5000:5000'
+  webapp:
+    build:
+      dockerfile: Dockerfile
+      context: ./sa-webapp
+    environment:
+      - SA_LOGIC_API_URL=http://logic:5000
+    ports:
+      - '8080:8080'
