@@ -1,9 +1,13 @@
+# Step 1: Build
 FROM node:8-alpine AS builder
 
+# Copy package manager files for dependency installation
 COPY ./package.json ./package-lock.json /usr/src/app/
 
+# Change working directory in container
 WORKDIR /usr/src/app
 
+# Install dependencies
 RUN npm install
 
 # COPY source code
